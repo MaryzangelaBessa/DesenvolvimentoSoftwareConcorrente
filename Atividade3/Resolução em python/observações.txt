@@ -1,0 +1,4 @@
+ 
+Essa solução não envolve 2 listas (uma de origem e uma de resultado).
+
+Com apens uma única lista foi usado threads para ordená-la, veja o código.
