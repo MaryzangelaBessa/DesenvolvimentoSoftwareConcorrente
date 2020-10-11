@@ -1,12 +1,16 @@
+import java.util.Vector;
+
 public class Ordenador extends Thread{
 
     private int myNumber;
     private int [] listaC;
+    private Vector arrayD;
     private int count;
 
-    public Ordenador(int id, int [] listaC){
+    public Ordenador(int id, int [] listaC, Vector <Integer> arrayD){
         this.myNumber = listaC[id];
         this.listaC = listaC;
+        this.arrayD = arrayD;
     }
 
     public int getMyNumber() {
@@ -38,6 +42,10 @@ public class Ordenador extends Thread{
         for (int i = 0; i < this.listaC.length; i++) {
             if (this.listaC[i] < this.myNumber) {
                 this.setCount(this.count+1);
+                while (this.arrayD.get(this.getCount()).equals(this.getMyNumber())) {
+                    count++;
+                }
+                arrayD.set(count, this.getMyNumber());
             }
         }
     }

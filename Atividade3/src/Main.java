@@ -1,11 +1,17 @@
+import java.util.Vector;
+
 public class Main {
 // Equipe: Eduardo e Maryzangela
 
     public static void main(String[] args) {
 
-        int arrayC [] = {3, 8, 7, 1, 9, 0, 5, 4, 2, 6};
-        //int arrayC [] = {3, 7, 7, 1, 9, 9, 5, 4, 2, 2};
-        int arrayD [] = new int[10];
+        //int arrayC [] = {3, 8, 7, 1, 9, 0, 5, 4, 2, 6};
+        int arrayC [] = {3, 7, 7, 1, 9, 9, 5, 4, 2, 2};
+        Vector <Integer> arrayD = new Vector<Integer>(10);
+
+        for (int i = 0; i < arrayC.length; i++) {
+            arrayD.add(arrayC[i]);
+        }
 
         Ordenador ordenador;
         Ordenador ordenadores [] = new Ordenador[arrayC.length];
@@ -24,7 +30,7 @@ public class Main {
 
         //
         for (int i = 0; i < arrayC.length; i++) {
-            ordenador = new Ordenador(i, arrayC);
+            ordenador = new Ordenador(i, arrayC, arrayD);
             ordenadores[i] = ordenador;
             ordenadores[i].start();
         }
@@ -32,11 +38,11 @@ public class Main {
         for (int i = 0; i < arrayC.length; i++) {
             try {
                 ordenadores[i].join();
-                int count = ordenadores[i].getCount();
-                while (arrayD[count] == ordenadores[i].getMyNumber()) {
-                    count++;
-                }
-                arrayD[count] = ordenadores[i].getMyNumber();
+//                int count = ordenadores[i].getCount();
+//                while (arrayD.get(count) == ordenadores[i].getMyNumber()) {
+//                    count++;
+//                }
+//                arrayD.set(count, ordenadores[i].getMyNumber());
             } catch (InterruptedException e) {
                 System.out.println(e);
             }
@@ -45,9 +51,9 @@ public class Main {
 
         // Apresentação da lista ordenada (array D)
         System.out.print("Lista Ordenada:    { ");
-        for (int i = 0; i < arrayD.length; i++) {
-            System.out.print(arrayD[i]);
-            if (i < arrayD.length - 1) {
+        for (int i = 0; i < arrayD.size(); i++) {
+            System.out.print(arrayD.get(i));
+            if (i < arrayD.size() - 1) {
                 System.out.print(", ");
             }
         }
