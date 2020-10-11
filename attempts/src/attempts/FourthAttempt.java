@@ -35,11 +35,7 @@ public class FourthAttempt extends Thread{
         boolean w = false;
 
         for (int j = 0; j < N; j++) {
-            if (j != i){
-                w = w;
-            }else {
-                w = want[j];
-            }
+            if (j != i) w = w | want[j];
         }
         return w;
     }

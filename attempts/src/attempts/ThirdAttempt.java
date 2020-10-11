@@ -1,6 +1,6 @@
 package attempts;
 
-public class ThirdAttempt extends Thread{
+public class ThirdAttempt extends  Thread{
 
     // Número de Procesos
     static int N = 2;
@@ -36,11 +36,7 @@ public class ThirdAttempt extends Thread{
         boolean w = false;
 
         for (int j = 0; j < N; j++) {
-            if (j != i){
-                w = w;
-            }else {
-                w = want[j];
-            }
+            if (j != i) w = w | want[j];
         }
         return w;
     }
