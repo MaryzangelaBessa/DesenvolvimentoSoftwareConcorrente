@@ -1,12 +1,13 @@
 package attempts;
 
-public class FirstAttempt extends Thread{
+public class SecondAttempt extends Thread{
 
-    static int N = 2;   // Número de processos
-    static int turn = 0;
+    // Número de Procesos
+    static int N = 2;
+    static boolean want [] = new boolean[N];
     private int id;
 
-    public FirstAttempt(int i){
+    public SecondAttempt(int i){
         id = i;
     }
 
@@ -31,22 +32,40 @@ public class FirstAttempt extends Thread{
         System.out.println("O processo " + id + " está saindo da seção crítica.");
     }
 
-    private void await(){
-        do{
-        } while (turn != id);
+    private boolean wait(int i){
+        boolean w = false;
+        for (int j = 0 ; j < N ; j++) {
+            if (j != i){
+                w = w;
+            } else {
+                w = want[j];
+            }
+        }
+        return w;
     }
 
-    private void changeTurn(){
-        turn = random(N);
-        System.out.println("turn = " + turn);
+    private void await(){
+        do {
+        } while (wait(id));
+        want[id] = true;
+    }
+
+    private void changeWant(){
+        want[id] = false;
     }
 
     public void run(){
+
+        // Inicializando as variáveis WANT de cada processo
+        for (int i = 0; i < N; i++) {
+            want[i] = false;
+        }
+
         do{
             nonCriticalSection();
             await();
             criticalSection();
-            changeTurn();
-        } while (true);
+            changeWant();
+        } while (true) ;
     }
 }
